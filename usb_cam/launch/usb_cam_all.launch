@@ -1,0 +1,68 @@
+<launch>
+
+  <!-- Root path for usb_cam yaml file -->
+  <arg name="yaml_root_path"    default="/home/sai/Desktop"/>
+  <arg name="index_1"           default="77"/>
+  <arg name="index_2"           default="66"/>
+  <arg name="index_3"           default="19"/>
+
+  <!-- Camera indices -->
+  <arg name="record_camera_1" default="true" />
+  <arg name="record_camera_2" default="false" />
+  <arg name="record_camera_3" default="false" />
+
+  <!-- Usb_camera 1 -->
+  <include file="$(find usb_cam)/launch/usb_cam.launch">
+      <arg name="video_path"  default="/dev/video2" />
+      <arg name="root_directory"  default="file://$(arg yaml_root_path)/calib_imgs/camera$(arg index_1)/CAM-$(arg index_1)/usb_cam.yaml" />
+      <arg name="usb_node_name"  default="usb_cam_$(arg index_1)"/>
+      <arg name="image_node_name" default="image_proc_$(arg index_1)" />
+      <arg name="image_namespace" default="usb_cam_$(arg index_1)" />
+
+      <param name="video_device" value="$(arg video_path)"/>
+      <param name="camera_info_url" value="$(arg root_directory)"/>
+
+  </include>
+
+ <!-- Usb_camera 2 -->
+  <!--<include file="$(find usb_cam)/launch/usb_cam.launch">
+      <arg name="video_path"  default="/dev/video4" />
+      <arg name="root_directory"  default="file://$(arg yaml_root_path)/calib_imgs/camera$(arg index_2)/CAM-$(arg index_2)/usb_cam.yaml" />
+      <arg name="usb_node_name"  default="usb_cam_$(arg index_2)"/>
+      <arg name="image_node_name" default="image_proc_$(arg index_2)" />
+      <arg name="image_namespace" default="usb_cam_$(arg index_2)" />
+
+      <param name="video_device" value="$(arg video_path)"/>
+      <param name="camera_info_url" value="$(arg root_directory)"/>
+    
+  </include>-->
+
+  <!-- Usb_camera 3 -->
+  <!--<include file="$(find usb_cam)/launch/usb_cam.launch">
+      <arg name="video_path"  default="/dev/video4" />
+      <arg name="yaml_path"  default="file://$(arg yaml_root_path)/calib_imgs/camera$(arg index_3)/CAM-$(arg index_3)/usb_cam.yaml" />
+      <arg name="usb_node_name"  default="usb_cam_$(arg index_3)"/>
+      <arg name="image_node_name" default="image_proc_$(arg index_3)" />
+      <arg name="image_namespace" default="usb_cam_$(arg index_3)" />
+
+      <param name="video_device" value="$(arg video_path)"/>
+      <param name="camera_info_url" value="$(arg yaml_path)"/>
+    
+  </include>-->
+
+
+  <!-- Rosbag record for usb_cam 1 -->
+  <node pkg="rosbag" type="record" name="rosbag_record_cam_1"
+       args="record -O $(find usb_cam)/rosbag/camera$(arg index_1) /usb_cam_$(arg index_1)/image_rect_color" if="$(arg record_camera_1)" />
+
+  <!-- Rosbag record for usb_cam 2 -->
+  <node pkg="rosbag" type="record" name="rosbag_record_cam_2"
+       args="record -O $(find usb_cam)/rosbag/camera$(arg index_2) /usb_cam_$(arg index_2)/image_rect_color" if="$(arg record_camera_2)" />
+
+  <!-- Rosbag record for usb_cam 3 -->  
+  <node pkg="rosbag" type="record" name="rosbag_record_cam_3"
+       args="record -O $(find usb_cam)/rosbag/camera$(arg index_3) /usb_cam_$(arg index_3)/image_rect_color" if="$(arg record_camera_3)" />  
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find usb_cam)/rviz/checkerboard_pixel.rviz" />
+
+</launch>
