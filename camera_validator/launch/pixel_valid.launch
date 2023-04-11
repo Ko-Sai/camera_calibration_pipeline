@@ -7,7 +7,7 @@
   <node pkg="rosbag" type="play" name="player" args="$(find usb_cam)/rosbag/camera$(arg index).bag"/>
 
   <!-- Checkerboard pixel validator -->
-  <node name="camera_validator" pkg="lb_camera_validator" type="lb_camera_validator.py" output="screen" required="true">  
+  <node name="camera_validator" pkg="camera_validator" type="pixel_validator.py" output="screen" required="true">  
       <param name="rgb_camera_topic"  value="/usb_cam_$(arg index)/image_rect_color" />
   </node>
 
