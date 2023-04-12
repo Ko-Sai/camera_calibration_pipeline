@@ -1,7 +1,7 @@
 # camera_calibration_pipeline
 
 There are two python script files, one for calibration(camera_calibration.py) and another one for validating the output matrix(camera_validation.py).
-These scripts support Ubuntu Melodic distribution and need to be run in python3.
+These scripts need to be run in python3.
 
 ### Software Requirements
 
