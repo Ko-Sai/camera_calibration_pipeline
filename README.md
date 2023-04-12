@@ -19,7 +19,7 @@ These scripts support Ubuntu Melodic distribution and need to be run in python3.
 ### Usage Instruction
  
  - You can mount 3 cameras on the stand vertically and do the calibration at the same time. 
- - You need to make sure the camera lens are clear, if not, you need to wipe them off. ***(Even after wiping, if the image is still blurred, you can adjust the screw on the camera until the image is fine)***
+ - You need to make sure the camera lens are clear, if not, you need to wipe them off.
  
  For camera calibration, you can follow the steps below.
  
@@ -33,12 +33,7 @@ And print two arcuo markers on A4 paper and stick each paper on each stand.
 
 ![](/images/two_stands.jpeg) 
 
-2) First, you need to label each camera and remove the camera frame.
-
-![](/images/camera_label.jpg) 
-![](/images/camera_unscrew.jpg) 
-
-3) Mount the cameras on the stand and plug the cameras into your computer one by one. 
+2) Mount the cameras on the stand and plug the cameras into your computer one by one. 
 
 ![](/images/camera_mount.jpeg) 
 
@@ -59,12 +54,10 @@ And print two arcuo markers on A4 paper and stick each paper on each stand.
 ![](/images/checkerboard_config.png) 
 
 
-There are total 64 configurations and you need to cover all of them. The variations can be up to +20 images. ***(For each configuration, you need to wait for 2seconds before you proceed with the next configuration)***
-
 ![](/images/table_config1.png) 
 ![](/images/table_config2.png) 
 
- 5) After covering all the configurations, you need to press “space bar” to stop the recording. In the meantime, you need to move two stands with aruco marker to 50cm and 100cm distance respectively from the camera.***(Make sure the two stands dont overlap)***. Again, you need to press “space bar” to proceed to the next step.
+ 5) After covering all necessary configurations, you need to press “space bar” to stop the recording. In the meantime, you need to move two stands with aruco marker to 50cm and 100cm distance respectively from the camera.***(Make sure the two stands dont overlap)***. Again, you need to press “space bar” to proceed to the next step.
  
  6) You can check the terminal for the information of what the script is doing at the moment. There are two validation methods implemented in the script. 
  i)The first one will be checking with arcuo markers' stand which you previously move in the sight of camera view. Once calibration is done, it will automatically validate the result.
